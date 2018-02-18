@@ -6,7 +6,6 @@
 
 from pymongo import MongoClient
 import json
-import urllib2
 
 # step 1:
 c = MongoClient('lisa.stuy.edu')
@@ -22,7 +21,7 @@ def by_borough(b):
         lst.append(doc)
     return lst
 
-'''test
+'''
 l = by_borough("Manhattan")
 print l
 for doc in l:
@@ -39,11 +38,14 @@ def by_zip(z):
         lst.append(doc)
     return lst
 
-'''test
+'''
 m = by_zip("10282")
 print m
 for doc in m:
-    print doc
+    print "DOC: ", doc
+    print doc["cuisine"]
+    print doc["name"]
+    print "\n"  
 # works, not as many results
 '''
 
@@ -96,8 +98,20 @@ for doc in p:
 '''
 
 # step 3 & 4:
-def getjson(url):
-    resp = urllib2.urlopen(url);
-    data = resp.read()
-    form = json.loads(data)
-    return form
+location = "usrep.json"
+
+def getjson(path):
+    with open(path, 'r') as f:
+        j = json.loads(f.read())
+        ret = j["objects"]
+        #for l in ret:
+        #    print l,"\n"
+    return ret
+
+col = db.csFoodStop
+rep = getjson(location)
+col.insert_many(rep)
+
+def test():
+    results = col.find({"state": "AL"})
+    return results
