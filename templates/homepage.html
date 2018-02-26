@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <title>REPSITE</title>
+    Welcome to our Repsite!
+  </head>
+  
+  <body>
+    <h1> Find Representative by State </h1>
+    <form>
+      <select name="state">
+	<option value="blank">CHOOSE STATE</option>
+	{% for state in states %}
+	<option value="{{state}}">{{state}}</option>
+	{% endfor %}
+      </select>
+      <br><br>
+      <button type="button">Get Info</button>
+    </form>
+    
+  </body>
+  
+</html>
