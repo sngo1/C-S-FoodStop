@@ -10,16 +10,26 @@
   <body>
     <h1> Find Representative by State </h1>
     <form>
-      <select name="state">
+      <select id="state" name="state">
 	<option value="blank">CHOOSE STATE</option>
 	{% for state in states %}
 	<option value="{{state}}">{{state}}</option>
 	{% endfor %}
       </select>
       <br><br>
-      <button type="button">Get Info</button>
+      <button type="button" id="submit">Get Info</button>
     </form>
-    
+
+    <br><br>
+    <div id="info">
+      <ol>
+	<!-- info will go here -->
+      </ol>
+    </div>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/main.js"></script>
+    <link rel="icon" href="data:;base64,=">
   </body>
   
 </html>
